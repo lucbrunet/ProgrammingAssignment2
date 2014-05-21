@@ -1,8 +1,8 @@
-## Put comments here that give an overall description of what your
-## functions do
+## cachematrix.R
+## This file contains two functions for calculating and returning c cached inverse of a matrix
 
-## Write a short comment describing this function
-
+## makeCacheMatrix
+## This function creates a matrix that can cache its inverse
 makeCacheMatrix <- function(x = matrix()) 
 {
     inv <- NULL
@@ -22,12 +22,13 @@ makeCacheMatrix <- function(x = matrix())
 }
 
 
-## Write a short comment describing this function
-
+## cacheSolve
+## This function uses a cached matrix to calculate a matrix inversion
+## if the inverse has already been calculated, the cached values are returned
 cacheSolve <- function(x, ...) 
 {
-    ## Return a matrix that is the inverse of 'x'
-    
+
+    # get the cahced results
     inv <- x$getinv()
     if(!is.null(inv)) 
     {
@@ -35,6 +36,7 @@ cacheSolve <- function(x, ...)
         return(inv)
     }
     
+    # if no cached results are retrieved, calculate the inversion and return that result
     data <- x$get()
     inv <- solve(data, ...)
     x$setinv(inv)
